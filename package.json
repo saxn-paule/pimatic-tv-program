@@ -1,0 +1,28 @@
+{ "name": "pimatic-tv-program",
+  "description": "TV program plugin",
+  "author": "Paul Schmidt",
+  "main": "tv-program",
+  "files": [
+    "tv-program.coffee",
+    "README.md",
+    "tv-program-config-schema.coffee",
+    "app"
+  ],
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saxn-paule/pimatic-tv-program.git"
+  },
+  "configSchema": "tv-program-config-schema.coffee",
+  "dependencies": {
+    "request": "latest",
+	"xml2json": "latest"
+  },
+  "peerDependencies": {
+    "pimatic": "0.8.*"
+  },
+  "engines": {
+    "node": ">0.8.x",
+    "npm": ">1.1.x"
+  }
+}

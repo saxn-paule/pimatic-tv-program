@@ -1,0 +1,15 @@
+/*Custom CSS*/
+.tv-program-item .title {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.tv-program-item img {
+	width: 120px;
+	float: left;
+	margin-right: 5px;
+}
+
+.tv-program-item .description {
+	white-space: normal;
+}
