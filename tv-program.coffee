@@ -37,6 +37,15 @@ module.exports = (env) ->
       schedule:
         description: 'the schedule data'
         type: t.string
+      time:
+        description: 'time of tv programm'
+        type: t.string
+      interval:
+        description: 'refresh interval in minutes'
+        type: t.number
+      short:
+        description: 'Show only short information without pictures and description'
+        type: t.boolean
 
     actions:
       reLoadSchedule:
@@ -46,14 +55,22 @@ module.exports = (env) ->
       @id = @config.id
       @name = @config.name
       @time = @config.time or "now"
+      @interval = @config.interval or 5
+      @short = @config.short or false
       @schedule = ""
 
       @reLoadSchedule()
 
-      setInterval ( =>
+      @timerId = setInterval ( =>
         @reLoadSchedule()
-      ), 300000
+      ), (@interval * 60000)
 
+      super()
+
+    destroy: () ->
+      if @timerId?
+        clearInterval @timerId
+        @timerId = null
       super()
 
     getTime: -> Promise.resolve(@time)
@@ -61,6 +78,18 @@ module.exports = (env) ->
     setTime: (value) ->
       if @time is value then return
       @time = value
+
+    getInterval: -> Promise.resolve(@interval)
+
+    setInterval: (value) ->
+      if @interval is value then return
+      @interval = value
+
+    getShort: -> Promise.resolve(@short)
+
+    setShort: (value) ->
+      if @short is value then return
+      @short = value
 
     getSchedule: -> Promise.resolve(@schedule)
 
@@ -91,14 +120,13 @@ module.exports = (env) ->
             itemHtml = ""
             itemHtml = itemHtml + '<div class="tv-program-item">'
             itemHtml = itemHtml + '<div class="title">' + item.title + '</div>'
-            if item.enclosure and item.enclosure.url
+            if not @short and item.enclosure and item.enclosure.url
               itemHtml = itemHtml + '<div class="image"><img src="' + item.enclosure.url + '" /></div>'
 
-            description = ""
-            if Object.keys(item.description).length > 0
+            if not @short and Object.keys(item.description).length > 0
               description = item.description
+              itemHtml = itemHtml + '<div class="description">' + description + '</div>'
 
-            itemHtml = itemHtml + '<div class="description">' + description + '</div>'
             itemHtml = itemHtml + '</div><div style="clear:both;">&nbsp;</div>'
 
             placeholder = placeholder + itemHtml

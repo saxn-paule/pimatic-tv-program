@@ -1,6 +1,7 @@
 { "name": "pimatic-tv-program",
   "description": "TV program plugin",
   "author": "Paul Schmidt",
+  "license": "MIT",
   "main": "tv-program",
   "files": [
     "tv-program.coffee",
@@ -9,10 +10,13 @@
     "device-config-schema.coffee",
     "app"
   ],
-  "version": "0.0.1",
+  "version": "0.0.3",
   "repository": {
     "type": "git",
     "url": "git://github.com/saxn-paule/pimatic-tv-program.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saxn-paule/pimatic-tv-program/issues"
   },
   "configSchema": "tv-program-config-schema.coffee",
   "dependencies": {
