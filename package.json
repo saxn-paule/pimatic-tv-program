@@ -6,6 +6,7 @@
     "tv-program.coffee",
     "README.md",
     "tv-program-config-schema.coffee",
+    "device-config-schema.coffee",
     "app"
   ],
   "version": "0.0.1",
@@ -19,7 +20,7 @@
 	"xml2json": "latest"
   },
   "peerDependencies": {
-    "pimatic": "0.8.*"
+    "pimatic": "0.9.*"
   },
   "engines": {
     "node": ">0.8.x",

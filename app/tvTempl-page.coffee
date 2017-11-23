@@ -8,11 +8,12 @@ $(document).on( "templateinit", (event) ->
 		afterRender: (elements) ->
 			super(elements)
 
-			@getAttribute('schedule').value.subscribe( (newval) =>
-				console.log("updated")
-				console.log(newval)
+			renderSchedule = (newval) =>
 				$("#"+@id+"_tv_program_placeholder").html(newval)
-			)
+
+			renderSchedule(@getAttribute('schedule').value())
+
+			@getAttribute('schedule').value.subscribe(renderSchedule)
 
 			return
 			

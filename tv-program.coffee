@@ -38,11 +38,17 @@ module.exports = (env) ->
         description: 'the schedule data'
         type: t.string
 
+    actions:
+      reLoadSchedule:
+        description: "reloads the schedule"
+
     constructor: (@config, @plugin) ->
       @id = @config.id
       @name = @config.name
       @time = @config.time or "now"
       @schedule = ""
+
+      @reLoadSchedule()
 
       setInterval ( =>
         @reLoadSchedule()
@@ -63,7 +69,6 @@ module.exports = (env) ->
       @emit 'schedule', value
 
     reLoadSchedule: ->
-
       if @time is "20:15"
         url = eveningUrl
       else if @time is "22:00"
