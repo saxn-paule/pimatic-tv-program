@@ -15,4 +15,8 @@ module.exports = {
 			description: "Show only short information without pictures and description"
 			type: "boolean"
 			default: false
+		stations:
+			description: "Which stations should be shown. Separate by ;"
+			type: "string"
+			default: "all"
 }

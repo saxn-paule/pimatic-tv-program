@@ -46,6 +46,9 @@ module.exports = (env) ->
       short:
         description: 'Show only short information without pictures and description'
         type: t.boolean
+      stations:
+        description: 'Show only selected stations'
+        type: t.string
 
     actions:
       reLoadSchedule:
@@ -57,6 +60,7 @@ module.exports = (env) ->
       @time = @config.time or "now"
       @interval = @config.interval or 5
       @short = @config.short or false
+      @stations = @config.stations or "all"
       @schedule = ""
 
       @reLoadSchedule()
@@ -91,6 +95,12 @@ module.exports = (env) ->
       if @short is value then return
       @short = value
 
+    getStations: -> Promise.resolve(@stations)
+
+    setStations: (value) ->
+      if @stations is value then return
+      @stations = value
+
     getSchedule: -> Promise.resolve(@schedule)
 
     setSchedule: (value) ->
@@ -105,6 +115,13 @@ module.exports = (env) ->
       else
         url = nowUrl
 
+      tempStations = @stations.split ";"
+      stationsToShow = new Array()
+      i = 0
+      while i < tempStations.length
+        stationsToShow.push tempStations[i].trim()
+        i++
+
       Request.get url, (error, response, body) =>
         if error
           throw error
@@ -115,8 +132,13 @@ module.exports = (env) ->
 
         if items and items.length > 0
           placeholder = "<div class=\"tv-program\">"
-          for i in [0...items.length - 1] by 1
-            item = items[i]
+          j = 0
+          while j < items.length
+            item = items[j]
+            j++
+            if item.title.split('|')[1].trim() not in stationsToShow and "all" not in stationsToShow
+              continue
+
             itemHtml = ""
             itemHtml = itemHtml + '<div class="tv-program-item">'
             itemHtml = itemHtml + '<div class="title">' + item.title + '</div>'
