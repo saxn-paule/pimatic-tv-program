@@ -4,7 +4,7 @@ This plugin provides the tv program for the current day. It shows the tv program
 There are different configuration parameters
 * time - Which program do you want to get? could be "now", "20:15" or "22:00"
 * short - If set to true, pictures and descriptions aren't shown
-* stations - Which stations should be shown. Default ist "all". Possible entries are: all, Das Erste, ZDF, RTL, SAT.1, ProSieben, kabel eins, RTL II, VOX, 3sat, ARTE, ZDFneo, NITRO, DMAX, sixx, SAT.1 Gold, ProSieben MAXX, SUPER RTL, TELE 5
+* stations - Which stations should be shown. Default ist "all". Possible entries are: all, Das Erste, ZDF, RTL, SAT.1, ProSieben, kabel eins, RTL II, VOX, 3sat, ARTE, ZDFneo, NITRO, DMAX, sixx, SAT.1 Gold, ProSieben MAXX, SUPER RTL, TELE 5, ServusTV Deutschland, COMEDY CENTRAL, ONE
 
 
 ### Sample Device Config:
