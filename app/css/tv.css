@@ -2,6 +2,7 @@
 .tv-program-item .title {
 	font-weight: bold;
 	margin-bottom: 5px;
+	white-space: normal;
 }
 
 .tv-program-item img {

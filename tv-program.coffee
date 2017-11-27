@@ -124,7 +124,14 @@ module.exports = (env) ->
 
       Request.get url, (error, response, body) =>
         if error
-          throw error
+          if error.code is "ENOTFOUND"
+            env.logger.warn "Cannot connect to :" + url
+            placeholder = "<div class=\"tv-program\">Server not reachable at the moment.</div>"
+            @setSchedule(placeholder)
+          else
+            env.logger.error error
+
+          return
 
         data = JSON.parse(Xml2Json.toJson(body))
 
@@ -156,6 +163,7 @@ module.exports = (env) ->
           placeholder = placeholder + "</div>"
 
           @setSchedule(placeholder)
+
 
     actions:
       loadSchedule:

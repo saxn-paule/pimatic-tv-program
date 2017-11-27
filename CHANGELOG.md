@@ -1,3 +1,7 @@
+**version 0.0.5** *released 2017-11-27*
+* avoid pimatic to crash on connection error
+* fixed responsive design
+
 **version 0.0.4** *released 2017-11-24*
 * Added option to show only selected stations
 
