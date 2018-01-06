@@ -5,7 +5,7 @@ module.exports = (env) ->
   M = env.matcher
   t = env.require('decl-api').types
   Request = require 'request'
-  Xml2Json = require 'xml2json'
+  xmljson = require 'xml-json-parser'
 
   nowUrl = "http://www.tvspielfilm.de/tv-programm/rss/jetzt.xml"
   eveningUrl = "http://www.tvspielfilm.de/tv-programm/rss/heute2015.xml"
@@ -133,7 +133,8 @@ module.exports = (env) ->
 
           return
 
-        data = JSON.parse(Xml2Json.toJson(body))
+        parser = new xmljson
+        data = parser.xml_str2json(body);
 
         items = data.rss.channel.item
 
@@ -142,6 +143,7 @@ module.exports = (env) ->
           j = 0
           while j < items.length
             item = items[j]
+            env.logger.info JSON.stringify(item)
             j++
             if item.title.split('|')[1].trim() not in stationsToShow and "all" not in stationsToShow
               continue
@@ -149,8 +151,8 @@ module.exports = (env) ->
             itemHtml = ""
             itemHtml = itemHtml + '<div class="tv-program-item">'
             itemHtml = itemHtml + '<div class="title">' + item.title + '</div>'
-            if not @short and item.enclosure and item.enclosure.url
-              itemHtml = itemHtml + '<div class="image"><img src="' + item.enclosure.url + '" /></div>'
+            if not @short and item.enclosure and item.enclosure._url
+              itemHtml = itemHtml + '<div class="image"><img src="' + item.enclosure._url + '" /></div>'
 
             if not @short and Object.keys(item.description).length > 0
               description = item.description
