@@ -143,7 +143,6 @@ module.exports = (env) ->
           j = 0
           while j < items.length
             item = items[j]
-            env.logger.info JSON.stringify(item)
             j++
             if item.title.split('|')[1].trim() not in stationsToShow and "all" not in stationsToShow
               continue

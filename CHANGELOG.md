@@ -1,3 +1,7 @@
+**version 0.1.1** *released 2018-01-06*
+* removed debug output
+* used fixed dependency version
+
 **version 0.1.0** *released 2018-01-06*
 * changed xml parser library due to install issues of xml2json
 
