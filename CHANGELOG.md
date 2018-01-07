@@ -1,3 +1,7 @@
+**version 0.1.2** *released 2018-01-07*
+* added nullcheck to avoid exception on invalid rss feed
+* added frontend message in case of invalid rss feed
+
 **version 0.1.1** *released 2018-01-06*
 * removed debug output
 * used fixed dependency version

@@ -134,11 +134,17 @@ module.exports = (env) ->
           return
 
         parser = new xmljson
-        data = parser.xml_str2json(body);
+        data = parser.xml_str2json(body)
+
+        if not data? or not data.rss? or not data.rss.channel?
+          placeholder = "<div class=\"tv-program\">No TV data available at the moment</div>"
+          @setSchedule(placeholder)
+
+          return
 
         items = data.rss.channel.item
 
-        if items and items.length > 0
+        if items? and items.length > 0
           placeholder = "<div class=\"tv-program\">"
           j = 0
           while j < items.length
