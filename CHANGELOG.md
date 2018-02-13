@@ -1,3 +1,6 @@
+**version 0.1.3** *released 2018-02-13*
+* handled connection error if server is not reachable
+
 **version 0.1.2** *released 2018-01-07*
 * added nullcheck to avoid exception on invalid rss feed
 * added frontend message in case of invalid rss feed

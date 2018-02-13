@@ -10,7 +10,7 @@
     "device-config-schema.coffee",
     "app"
   ],
-  "version": "0.1.2",
+  "version": "0.1.3",
   "repository": {
     "type": "git",
     "url": "git://github.com/saxn-paule/pimatic-tv-program.git"

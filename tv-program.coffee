@@ -124,7 +124,7 @@ module.exports = (env) ->
 
       Request.get url, (error, response, body) =>
         if error
-          if error.code is "ENOTFOUND"
+          if error.code is "ENOTFOUND" or error.code is "ECONNRESET"
             env.logger.warn "Cannot connect to :" + url
             placeholder = "<div class=\"tv-program\">Server not reachable at the moment.</div>"
             @setSchedule(placeholder)
