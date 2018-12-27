@@ -54,9 +54,9 @@ module.exports = (env) ->
       reLoadSchedule:
         description: "reloads the schedule"
 
-    constructor: (@config, @plugin) ->
-      @id = @config.id
-      @name = @config.name
+    constructor: (config, plugin) ->
+      super(config.id, config.name)
+      @config = config
       @time = @config.time or "now"
       @interval = @config.interval or 5
       @short = @config.short or false
@@ -68,8 +68,6 @@ module.exports = (env) ->
       @timerId = setInterval ( =>
         @reLoadSchedule()
       ), (@interval * 60000)
-
-      super()
 
     destroy: () ->
       if @timerId?
